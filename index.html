@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cicera Pezzini | Psicanalista & Terapeuta</title>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <div class="logo-signature">Cicera Pezzini</div>
+            <p class="tagline">Psicanalista & Terapeuta</p>
+        </header>
+
+        <main>
+            <section class="content-card">
+                <h2>Você sabia?</h2>
+                <p>A psicanálise não cura quem você é, mas liberta você da ilusão de ser quem os outros desejaram.</p>
+            </section>
+
+            <section class="content-card">
+                <h2>O que aprendo com o obstáculo?</h2>
+                <p>A análise não remove a pedra do caminho; ela ensina que a pedra faz parte da sua paisagem.</p>
+            </section>
+
+            <section class="content-card highlight">
+                <p>Saúde mental também é cuidado.</p>
+            </section>
+        </main>
+
+        <div class="action-area">
+            <a href="https://wa.me/5547999147077?text=Olá,%20gostaria%20de%20marcar%20uma%20consulta."
+               class="whatsapp-btn"
+               target="_blank">
+                Agende sua consulta via WhatsApp
+            </a>
+        </div>
+
+        <footer>
+            <p class="location">📍 Itapema, SC e região</p>
+            <p class="copyright">&copy; 2024 Cicera Pezzini. Todos os direitos reservados.</p>
+        </footer>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const cards = document.querySelectorAll('.content-card');
+
+            const revealOnScroll = () => {
+                cards.forEach(card => {
+                    const cardTop = card.getBoundingClientRect().top;
+                    const triggerPoint = window.innerHeight * 0.85;
+
+                    if (cardTop < triggerPoint) {
+                        card.classList.add('active');
+                    }
+                });
+            };
+
+            window.addEventListener('scroll', revealOnScroll);
+            revealOnScroll(); // Ativação inicial
+        });
+    </script>
+</body>
+</html>
