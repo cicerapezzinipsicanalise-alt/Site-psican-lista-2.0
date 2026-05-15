@@ -1,4 +1,3 @@
-/* --- TEMA SEDA ESCURA ANIMADA --- */
 :root {
     --primary-bronze: #b08d79;   
     --accent-gold: #c5a059;     
@@ -12,7 +11,7 @@ body {
     font-family: 'Playfair Display', serif;
 }
 
-/* 1. FUNDO QUE SE MOVE (EFEITO SEDA/BANDEIRA) */
+/* FUNDO DE SEDA ANIMADA (ONDULAÇÃO) */
 .background-motion {
     position: fixed;
     top: 0;
@@ -22,45 +21,74 @@ body {
     z-index: -2;
     background: linear-gradient(125deg, #121212 0%, #2a2a2a 50%, #121212 100%);
     background-size: 50% 100%;
-    animation: silkWave 15s ease-in-out infinite;
+    animation: waveMotion 15s ease-in-out infinite;
 }
 
-@keyframes silkWave {
+@keyframes waveMotion {
     0%, 100% { transform: translateX(0); }
     50% { transform: translateX(-15%); }
 }
 
-/* 2. FOLHAS DOURADAS NOS CANTOS */
-.leaves-decor::before, .leaves-decor::after {
+/* ELEMENTO DO NOME COM RAMOS (ESTILO LOGO) */
+.name-container {
+    display: inline-block;
+    position: relative;
+    padding: 0 80px; /* Espaço para as folhas */
+    margin-bottom: 20px;
+}
+
+.logo-signature {
+    font-family: 'Great Vibes', cursive;
+    font-size: clamp(50px, 12vw, 90px);
+    color: var(--primary-bronze);
+    position: relative;
+    z-index: 1;
+}
+
+/* RAMOS LATERAIS NO NOME (ESTILO A IMAGEM) */
+.name-container::before, .name-container::after {
     content: "";
-    position: fixed;
-    width: clamp(300px, 40vw, 500px);
-    height: clamp(300px, 40vw, 500px);
+    position: absolute;
+    top: 50%;
+    width: 70px;
+    height: 100px;
     background-image: url('https://www.transparentpng.com/download/leaves/gold-leaves-transparent-background-9.png');
     background-size: contain;
     background-repeat: no-repeat;
-    opacity: 0.35;
-    z-index: -1;
+    opacity: 0.8;
 }
 
-.leaves-decor::before { top: -80px; left: -80px; transform: rotate(165deg); }
-.leaves-decor::after { bottom: -80px; right: -80px; transform: rotate(-15deg); }
+.name-container::before {
+    left: 0;
+    transform: translateY(-50%) rotate(-45deg) scaleX(-1);
+}
 
-/* 3. CARDS TRANSLÚCIDOS (EFEITO VIDRO) */
+.name-container::after {
+    right: 0;
+    transform: translateY(-50%) rotate(45deg);
+}
+
+.tagline {
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    color: var(--accent-gold);
+    font-size: 0.9rem;
+    margin-bottom: 50px;
+}
+
+/* CARDS COM EFEITO DE VIDRO */
 .content-card {
-    background: rgba(30, 30, 30, 0.75);
+    background: rgba(30, 30, 30, 0.7);
     backdrop-filter: blur(15px);
     -webkit-backdrop-filter: blur(15px);
     border-radius: 30px;
-    border-left: 8px solid var(--accent-gold);
-    padding: 50px 30px;
-    margin: 40px auto;
-    max-width: 800px;
-    box-shadow: 0 20px 50px rgba(0,0,0,0.6);
-    /* Início da animação do script */
+    border: 1px solid rgba(197, 160, 89, 0.1);
+    padding: 40px 25px;
+    margin: 30px 0;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.5);
     opacity: 0;
     transform: translateY(30px);
-    transition: all 1.2s cubic-bezier(0.2, 1, 0.3, 1);
+    transition: all 1.2s ease-out;
 }
 
 .content-card.active {
@@ -68,22 +96,20 @@ body {
     transform: translateY(0);
 }
 
-.logo-signature {
-    font-family: 'Great Vibes', cursive;
-    font-size: clamp(70px, 15vw, 110px);
-    color: var(--primary-bronze);
-    text-align: center;
-}
+.content-card h2 { color: var(--primary-bronze); margin-bottom: 10px; font-weight: 400; }
+.content-card p { color: #d1d1d1; font-size: 1.1rem; line-height: 1.6; }
 
+/* BOTÃO WHATSAPP */
 .whatsapp-btn {
     display: inline-block;
     background: linear-gradient(135deg, #25d366 0%, #128c7e 100%);
     color: white;
-    padding: 20px 50px;
-    border-radius: 60px;
+    padding: 18px 45px;
+    border-radius: 50px;
     text-decoration: none;
     font-weight: bold;
+    margin-top: 30px;
     box-shadow: 0 10px 30px rgba(37, 211, 102, 0.3);
 }
 
-footer { text-align: center; color: var(--primary-bronze); margin-top: 80px; }
+footer { margin-top: 60px; color: var(--primary-bronze); padding-bottom: 40px; }
