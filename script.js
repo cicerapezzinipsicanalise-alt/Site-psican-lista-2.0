@@ -5,7 +5,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 entry.target.classList.add('active');
             }
         });
-    }, { threshold: 0.1 });
+    }, { threshold: 0.2 });
 
-    document.querySelectorAll('.content-card').forEach(card => observer.observe(card));
+    document.querySelectorAll('.quote-card, .highlight-card').forEach(el => {
+        observer.observe(el);
+    });
 });
