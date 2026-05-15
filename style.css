@@ -1,9 +1,10 @@
-/* --- TEMA SEDA ESCURA ANIMADA (EFEITO BANDEIRA) --- */
+/* --- TEMA SEDA ESCURA ANIMADA (EFEITO BANDEIRA/MOVIMENTO) --- */
 :root {
-    --primary-bronze: #b08d79;   
-    --accent-gold: #c5a059;     
-    --bg-dark-deep: #121212;
-    --card-overlay: rgba(30, 30, 30, 0.7);
+    --primary-bronze: #b08d79;   /* Bronze sofisticado */
+    --accent-gold: #c5a059;     /* Dourado das folhas */
+    --bg-dark-deep: #121212;    /* Cinza grafite profundo */
+    --card-overlay: rgba(28, 28, 28, 0.75); /* Fundo dos cards translúcido */
+    --text-light: #e0e0e0;
 }
 
 * {
@@ -18,85 +19,116 @@ body {
     font-family: 'Playfair Display', serif;
     overflow-x: hidden;
     min-height: 100vh;
+    position: relative;
 }
 
-/* ANIMAÇÃO DA SEDA/BANDEIRA AO FUNDO */
-.animated-bg {
+/* 1. O FUNDO ANIMADO (EFEITO BANDEIRA / SEDA ONDULANTE) */
+body::before {
+    content: "";
     position: fixed;
     top: 0;
     left: 0;
-    width: 100%;
+    width: 200%; /* Permite o movimento lateral */
     height: 100%;
     z-index: -2;
-    background: linear-gradient(125deg, #1a1a1a 0%, #2c2c2c 50%, #1a1a1a 100%);
-    background-size: 200% 200%;
-    animation: waveBackground 10s ease-in-out infinite;
+    /* Gradiente que simula sombras e luzes do cetim/seda */
+    background: linear-gradient(
+        125deg, 
+        #121212 0%, 
+        #1a1a1a 25%, 
+        #2a2a2a 50%, 
+        #1a1a1a 75%, 
+        #121212 100%
+    );
+    background-size: 50% 100%;
+    animation: waveBackground 12s ease-in-out infinite;
 }
 
 @keyframes waveBackground {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
+    0% { transform: translateX(0); }
+    50% { transform: translateX(-25%); }
+    100% { transform: translateX(0); }
 }
 
-/* FOLHAS DOURADAS NOS CANTOS */
-body::before, body::after {
-    content: "";
+/* 2. FOLHAS DOURADAS NOS CANTOS (FIXAS) */
+.leaves-decor {
     position: fixed;
-    width: clamp(300px, 40vw, 500px);
-    height: clamp(300px, 40vw, 500px);
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    z-index: -1;
+}
+
+.leaves-decor::before, .leaves-decor::after {
+    content: "";
+    position: absolute;
+    width: clamp(300px, 45vw, 550px);
+    height: clamp(300px, 45vw, 550px);
     background-image: url('https://www.transparentpng.com/download/leaves/gold-leaves-transparent-background-9.png');
     background-size: contain;
     background-repeat: no-repeat;
     opacity: 0.35;
-    z-index: -1;
-    pointer-events: none;
 }
 
-body::before { top: -80px; left: -80px; transform: rotate(165deg); }
-body::after { bottom: -80px; right: -80px; transform: rotate(-15deg); }
+.leaves-decor::before {
+    top: -100px;
+    left: -100px;
+    transform: rotate(165deg);
+}
 
+.leaves-decor::after {
+    bottom: -100px;
+    right: -100px;
+    transform: rotate(-15deg);
+}
+
+/* 3. ESTRUTURA DO CONTEÚDO */
 .container {
     width: 90%;
-    max-width: 800px;
+    max-width: 850px;
     margin: 0 auto;
-    padding: 80px 20px;
+    padding: clamp(60px, 12vh, 120px) 20px;
     text-align: center;
 }
 
 /* LOGO ASSINATURA */
 .logo-signature {
     font-family: 'Great Vibes', cursive;
-    font-size: clamp(70px, 15vw, 110px);
+    font-size: clamp(75px, 18vw, 120px);
     color: var(--primary-bronze);
-    line-height: 1;
-    margin-bottom: 10px;
-    text-shadow: 0 0 15px rgba(176, 141, 121, 0.3);
+    line-height: 0.9;
+    margin-bottom: 15px;
+    text-shadow: 0 0 20px rgba(176, 141, 121, 0.4);
+    display: block;
 }
 
 .tagline {
-    font-size: clamp(0.8rem, 3vw, 1.2rem);
-    letter-spacing: 5px;
+    font-size: clamp(0.8rem, 3.5vw, 1.2rem);
+    letter-spacing: 6px;
     text-transform: uppercase;
     color: var(--accent-gold);
-    margin-top: -10px;
-    margin-bottom: 60px;
+    font-weight: 400;
+    margin-bottom: 70px;
 }
 
-/* CARDS TRANSLÚCIDOS ESCUROS */
+/* 4. CARDS DE CONTEÚDO (EFEITO VIDRO ESCURO) */
 .content-card {
     background: var(--card-overlay);
-    backdrop-filter: blur(15px);
-    -webkit-backdrop-filter: blur(15px);
-    border-radius: 30px;
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    border-radius: 35px;
     border: 1px solid rgba(197, 160, 89, 0.2);
-    border-left: 8px solid var(--accent-gold);
-    margin: 40px 0;
-    padding: 50px 30px;
-    box-shadow: 0 25px 50px rgba(0,0,0,0.5);
+    border-left: 10px solid var(--accent-gold);
+    margin: 50px 0;
+    padding: clamp(40px, 8vw, 70px) clamp(25px, 5vw, 45px);
+    box-shadow: 0 30px 60px rgba(0,0,0,0.6);
+    
+    /* Ativado via JavaScript */
     opacity: 0;
-    transform: translateY(30px);
-    transition: all 1.2s cubic-bezier(0.22, 1, 0.36, 1);
+    transform: translateY(40px);
+    transition: all 1.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .content-card.active {
@@ -104,21 +136,59 @@ body::after { bottom: -80px; right: -80px; transform: rotate(-15deg); }
     transform: translateY(0);
 }
 
-.content-card h2 { color: var(--primary-bronze); margin-bottom: 20px; }
-.content-card p { color: #e0e0e0; font-size: clamp(1.1rem, 3vw, 1.4rem); font-weight: 300; }
+.content-card h2 {
+    color: var(--primary-bronze);
+    font-size: clamp(1.5rem, 5vw, 2.2rem);
+    margin-bottom: 25px;
+}
 
-/* BOTÃO WHATSAPP */
+.content-card p {
+    color: var(--text-light);
+    font-size: clamp(1.1rem, 3.5vw, 1.5rem);
+    font-weight: 300;
+    line-height: 1.7;
+}
+
+/* 5. BOTÃO DE AÇÃO WHATSAPP */
 .whatsapp-btn {
     display: inline-block;
     background: linear-gradient(135deg, #25d366 0%, #128c7e 100%);
-    color: white;
-    padding: 20px 50px;
-    border-radius: 60px;
+    color: #ffffff;
+    padding: 22px 55px;
+    border-radius: 70px;
     text-decoration: none;
     font-weight: bold;
-    margin-top: 40px;
-    box-shadow: 0 15px 30px rgba(37, 211, 102, 0.3);
+    font-size: 1.2rem;
+    margin-top: 50px;
+    box-shadow: 0 20px 40px rgba(37, 211, 102, 0.3);
+    transition: transform 0.4s ease;
 }
 
-footer { margin-top: 100px; padding-bottom: 50px; }
-.location { font-weight: bold; color: var(--primary-bronze); margin-bottom: 10px; }
+.whatsapp-btn:hover {
+    transform: scale(1.08) translateY(-5px);
+}
+
+/* 6. RODAPÉ */
+footer {
+    margin-top: 120px;
+    padding-bottom: 60px;
+}
+
+.location {
+    font-weight: bold;
+    color: var(--primary-bronze);
+    font-size: 1.2rem;
+    margin-bottom: 15px;
+}
+
+.copyright {
+    color: #555;
+    font-size: 0.85rem;
+}
+
+/* AJUSTES PARA TABLETS E CELULARES */
+@media (max-width: 768px) {
+    .container { padding: 40px 15px; }
+    .logo-signature { font-size: 80px; }
+    .content-card { margin: 30px 0; padding: 40px 25px; }
+}
