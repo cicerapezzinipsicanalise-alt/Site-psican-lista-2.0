@@ -1,9 +1,9 @@
-/* --- TEMA LUXO: CINZA ESCURO, BRONZE E FOLHAS DOURADAS --- */
+/* --- TEMA SEDA ESCURA ANIMADA (EFEITO BANDEIRA) --- */
 :root {
-    --primary-bronze: #b08d79;   /* Bronze para destaque */
-    --accent-gold: #c5a059;     /* Dourado das folhas */
-    --bg-dark: #1a1a1a;         /* Cinza profundo */
-    --card-gray: #242424;       /* Tom dos blocos de texto */
+    --primary-bronze: #b08d79;   
+    --accent-gold: #c5a059;     
+    --bg-dark-deep: #121212;
+    --card-overlay: rgba(30, 30, 30, 0.7);
 }
 
 * {
@@ -13,68 +13,90 @@
 }
 
 body {
-    /* Efeito de seda acetinada em tom escuro */
-    background: radial-gradient(circle at center, #2c2c2c 0%, #121212 100%);
-    background-attachment: fixed;
+    background-color: var(--bg-dark-deep);
     color: var(--primary-bronze);
     font-family: 'Playfair Display', serif;
     overflow-x: hidden;
     min-height: 100vh;
 }
 
+/* ANIMAÇÃO DA SEDA/BANDEIRA AO FUNDO */
+.animated-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -2;
+    background: linear-gradient(125deg, #1a1a1a 0%, #2c2c2c 50%, #1a1a1a 100%);
+    background-size: 200% 200%;
+    animation: waveBackground 10s ease-in-out infinite;
+}
+
+@keyframes waveBackground {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
 /* FOLHAS DOURADAS NOS CANTOS */
 body::before, body::after {
     content: "";
     position: fixed;
-    width: 400px;
-    height: 400px;
+    width: clamp(300px, 40vw, 500px);
+    height: clamp(300px, 40vw, 500px);
     background-image: url('https://www.transparentpng.com/download/leaves/gold-leaves-transparent-background-9.png');
     background-size: contain;
     background-repeat: no-repeat;
-    opacity: 0.3; /* Visibilidade das folhas */
+    opacity: 0.35;
     z-index: -1;
     pointer-events: none;
 }
 
-body::before { top: -50px; left: -50px; transform: rotate(165deg); }
-body::after { bottom: -50px; right: -50px; transform: rotate(-15deg); }
+body::before { top: -80px; left: -80px; transform: rotate(165deg); }
+body::after { bottom: -80px; right: -80px; transform: rotate(-15deg); }
 
 .container {
     width: 90%;
     max-width: 800px;
     margin: 0 auto;
-    padding: 60px 20px;
+    padding: 80px 20px;
     text-align: center;
 }
 
-/* LOGO ESTILO ASSINATURA */
+/* LOGO ASSINATURA */
 .logo-signature {
     font-family: 'Great Vibes', cursive;
-    font-size: clamp(60px, 15vw, 100px);
+    font-size: clamp(70px, 15vw, 110px);
     color: var(--primary-bronze);
     line-height: 1;
     margin-bottom: 10px;
+    text-shadow: 0 0 15px rgba(176, 141, 121, 0.3);
 }
 
 .tagline {
-    font-size: 1rem;
+    font-size: clamp(0.8rem, 3vw, 1.2rem);
     letter-spacing: 5px;
     text-transform: uppercase;
     color: var(--accent-gold);
-    margin-bottom: 50px;
+    margin-top: -10px;
+    margin-bottom: 60px;
 }
 
-/* CARDS EM CINZA ESCURO */
+/* CARDS TRANSLÚCIDOS ESCUROS */
 .content-card {
-    background: var(--card-gray);
-    border-radius: 25px;
-    border-left: 6px solid var(--accent-gold);
+    background: var(--card-overlay);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border-radius: 30px;
+    border: 1px solid rgba(197, 160, 89, 0.2);
+    border-left: 8px solid var(--accent-gold);
     margin: 40px 0;
-    padding: 40px;
-    box-shadow: 0 15px 35px rgba(0,0,0,0.5);
-    opacity: 0; /* Para animação do script */
-    transform: translateY(20px);
-    transition: all 1s ease-out;
+    padding: 50px 30px;
+    box-shadow: 0 25px 50px rgba(0,0,0,0.5);
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 1.2s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .content-card.active {
@@ -82,26 +104,21 @@ body::after { bottom: -50px; right: -50px; transform: rotate(-15deg); }
     transform: translateY(0);
 }
 
-.content-card h2 {
-    color: var(--primary-bronze);
-    margin-bottom: 15px;
-}
-
-.content-card p {
-    color: #d1d1d1;
-    font-size: 1.2rem;
-}
+.content-card h2 { color: var(--primary-bronze); margin-bottom: 20px; }
+.content-card p { color: #e0e0e0; font-size: clamp(1.1rem, 3vw, 1.4rem); font-weight: 300; }
 
 /* BOTÃO WHATSAPP */
 .whatsapp-btn {
     display: inline-block;
     background: linear-gradient(135deg, #25d366 0%, #128c7e 100%);
     color: white;
-    padding: 18px 45px;
-    border-radius: 50px;
+    padding: 20px 50px;
+    border-radius: 60px;
     text-decoration: none;
     font-weight: bold;
-    box-shadow: 0 10px 20px rgba(37, 211, 102, 0.3);
+    margin-top: 40px;
+    box-shadow: 0 15px 30px rgba(37, 211, 102, 0.3);
 }
 
-footer { margin-top: 60px; color: var(--primary-bronze); }
+footer { margin-top: 100px; padding-bottom: 50px; }
+.location { font-weight: bold; color: var(--primary-bronze); margin-bottom: 10px; }
