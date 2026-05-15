@@ -1,0 +1,126 @@
+/* --- IDENTIDADE VISUAL COMPLETA: CICERA PEZZINI --- */
+:root {
+    --primary-bronze: #8c7365;   /* Tom da sua logo */
+    --accent-gold: #c5a059;     /* Tom das folhas e ramos */
+    --text-dark: #333333;
+    --white-silk: rgba(255, 255, 255, 0.75);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    /* Efeito seda/acetinado fiel às suas imagens */
+    background: radial-gradient(circle at center, #ffffff 0%, #dcdcdc 100%);
+    background-attachment: fixed;
+    color: var(--primary-bronze);
+    font-family: 'Playfair Display', serif;
+    line-height: 1.6;
+    overflow-x: hidden;
+    min-height: 100vh;
+}
+
+/* RAMOS DOURADOS NOS CANTOS */
+body::before, body::after {
+    content: "";
+    position: fixed;
+    width: clamp(250px, 35vw, 450px);
+    height: clamp(250px, 35vw, 450px);
+    background-image: url('https://www.transparentpng.com/download/leaves/gold-leaves-transparent-background-9.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    opacity: 0.22;
+    z-index: -1;
+    pointer-events: none;
+}
+
+body::before {
+    top: -60px;
+    left: -60px;
+    transform: rotate(165deg);
+}
+
+body::after {
+    bottom: -60px;
+    right: -60px;
+    transform: rotate(-15deg);
+}
+
+.container {
+    width: 90%;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: clamp(50px, 10vh, 100px) 20px;
+    text-align: center;
+}
+
+/* LOGO ESTILO ASSINATURA */
+header {
+    margin-bottom: 70px;
+}
+
+.logo-signature {
+    font-family: 'Great Vibes', cursive;
+    font-size: clamp(65px, 15vw, 100px);
+    color: var(--primary-bronze);
+    line-height: 1;
+    margin-bottom: 10px;
+}
+
+.tagline {
+    font-size: clamp(0.9rem, 3vw, 1.3rem);
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    color: var(--accent-gold);
+    font-weight: 400;
+    margin-top: -10px;
+}
+
+/* CARDS COM EFEITO SEDA/VIDRO */
+.content-card {
+    background: var(--white-silk);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    margin: 40px 0;
+    padding: clamp(35px, 6vw, 60px);
+    border-radius: 30px;
+    border-left: 6px solid var(--accent-gold);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.04);
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 1.2s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.content-card.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.highlight p {
+    font-weight: 600;
+    color: var(--primary-bronze);
+    font-style: italic;
+}
+
+/* BOTÃO WHATSAPP */
+.whatsapp-btn {
+    display: inline-block;
+    background-color: #25d366;
+    color: white;
+    padding: 18px 45px;
+    border-radius: 60px;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1.2rem;
+    margin-top: 40px;
+    box-shadow: 0 12px 30px rgba(37, 211, 102, 0.25);
+}
+
+.location {
+    font-weight: 700;
+    color: var(--primary-bronze);
+    margin-bottom: 15px;
+}
