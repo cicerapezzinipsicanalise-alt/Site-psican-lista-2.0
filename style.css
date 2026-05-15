@@ -1,9 +1,9 @@
-/* --- TEMA SEDA ACETINADA COM DOBRAS --- */
+/* --- TEMA LUXO: CINZA ESCURO, BRONZE E FOLHAS DOURADAS --- */
 :root {
-    --primary-bronze: #8c7365;   
-    --accent-gold: #c5a059;     
-    --text-dark: #333333;
-    --silk-gray: #e8e8e8;
+    --primary-bronze: #b08d79;   /* Bronze para destaque */
+    --accent-gold: #c5a059;     /* Dourado das folhas */
+    --bg-dark: #1a1a1a;         /* Cinza profundo */
+    --card-gray: #242424;       /* Tom dos blocos de texto */
 }
 
 * {
@@ -13,81 +13,68 @@
 }
 
 body {
-    /* Efeito visual de dobras e profundidade (Seda) */
-    background-color: var(--silk-gray);
-    background-image: 
-        linear-gradient(110deg, #f2f2f2 0%, #dcdcdc 45%, #ffffff 50%, #dcdcdc 55%, #f2f2f2 100%),
-        linear-gradient(135deg, rgba(0,0,0,0.02) 25%, transparent 25%),
-        linear-gradient(225deg, rgba(0,0,0,0.02) 25%, transparent 25%);
-    background-size: 100% 100%, 80px 80px, 80px 80px;
+    /* Efeito de seda acetinada em tom escuro */
+    background: radial-gradient(circle at center, #2c2c2c 0%, #121212 100%);
     background-attachment: fixed;
-    
     color: var(--primary-bronze);
     font-family: 'Playfair Display', serif;
-    line-height: 1.6;
     overflow-x: hidden;
     min-height: 100vh;
 }
 
-/* RAMOS DOURADOS DECORATIVOS */
+/* FOLHAS DOURADAS NOS CANTOS */
 body::before, body::after {
     content: "";
     position: fixed;
-    width: clamp(250px, 35vw, 450px);
-    height: clamp(250px, 35vw, 450px);
+    width: 400px;
+    height: 400px;
     background-image: url('https://www.transparentpng.com/download/leaves/gold-leaves-transparent-background-9.png');
     background-size: contain;
     background-repeat: no-repeat;
-    opacity: 0.28;
+    opacity: 0.3; /* Visibilidade das folhas */
     z-index: -1;
     pointer-events: none;
 }
 
-body::before { top: -60px; left: -60px; transform: rotate(165deg); }
-body::after { bottom: -60px; right: -60px; transform: rotate(-15deg); }
+body::before { top: -50px; left: -50px; transform: rotate(165deg); }
+body::after { bottom: -50px; right: -50px; transform: rotate(-15deg); }
 
 .container {
     width: 90%;
     max-width: 800px;
     margin: 0 auto;
-    padding: clamp(50px, 10vh, 100px) 20px;
+    padding: 60px 20px;
     text-align: center;
 }
 
-/* LOGO ASSINATURA */
+/* LOGO ESTILO ASSINATURA */
 .logo-signature {
     font-family: 'Great Vibes', cursive;
-    font-size: clamp(65px, 15vw, 105px);
+    font-size: clamp(60px, 15vw, 100px);
     color: var(--primary-bronze);
     line-height: 1;
     margin-bottom: 10px;
 }
 
 .tagline {
-    font-size: clamp(0.9rem, 3vw, 1.3rem);
+    font-size: 1rem;
     letter-spacing: 5px;
     text-transform: uppercase;
     color: var(--accent-gold);
-    margin-top: -10px;
-    margin-bottom: 60px;
+    margin-bottom: 50px;
 }
 
-/* CARDS TRANSLÚCIDOS (Efeito que flutua na seda) */
+/* CARDS EM CINZA ESCURO */
 .content-card {
-    background: rgba(255, 255, 255, 0.45);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border: 1px solid rgba(255, 255, 255, 0.6);
+    background: var(--card-gray);
+    border-radius: 25px;
     border-left: 6px solid var(--accent-gold);
-    border-radius: 30px;
     margin: 40px 0;
-    padding: clamp(35px, 6vw, 60px);
-    box-shadow: 15px 15px 40px rgba(0,0,0,0.04);
-    
-    /* Início da animação (JavaScript ativará) */
-    opacity: 0;
-    transform: translateY(30px);
-    transition: all 1.2s cubic-bezier(0.22, 1, 0.36, 1);
+    padding: 40px;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.5);
+    opacity: 0; /* Para animação do script */
+    transform: translateY(20px);
+    transition: all 1s ease-out;
 }
 
 .content-card.active {
@@ -98,12 +85,11 @@ body::after { bottom: -60px; right: -60px; transform: rotate(-15deg); }
 .content-card h2 {
     color: var(--primary-bronze);
     margin-bottom: 15px;
-    font-weight: 400;
 }
 
 .content-card p {
-    color: var(--text-dark);
-    font-size: clamp(1.1rem, 3vw, 1.4rem);
+    color: #d1d1d1;
+    font-size: 1.2rem;
 }
 
 /* BOTÃO WHATSAPP */
@@ -111,16 +97,11 @@ body::after { bottom: -60px; right: -60px; transform: rotate(-15deg); }
     display: inline-block;
     background: linear-gradient(135deg, #25d366 0%, #128c7e 100%);
     color: white;
-    padding: 20px 50px;
-    border-radius: 60px;
+    padding: 18px 45px;
+    border-radius: 50px;
     text-decoration: none;
     font-weight: bold;
-    font-size: 1.1rem;
-    margin-top: 40px;
-    box-shadow: 0 10px 25px rgba(37, 211, 102, 0.2);
+    box-shadow: 0 10px 20px rgba(37, 211, 102, 0.3);
 }
 
-/* RODAPÉ */
-footer { margin-top: 100px; padding-bottom: 50px; }
-.location { font-weight: bold; color: var(--primary-bronze); margin-bottom: 10px; }
-.copyright { color: #888; font-size: 0.8rem; }
+footer { margin-top: 60px; color: var(--primary-bronze); }
