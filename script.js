@@ -1,23 +1,11 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // Seleciona os cards para a animação de scroll
-    const cards = document.querySelectorAll('.content-card');
-
-    const observerOptions = {
-        threshold: 0.1,
-        rootMargin: "0px 0px -50px 0px"
-    };
-
-    const revealOnScroll = new IntersectionObserver((entries, observer) => {
+    const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                // Ativa a animação definida no CSS
                 entry.target.classList.add('active');
-                observer.unobserve(entry.target);
             }
         });
-    }, observerOptions);
+    }, { threshold: 0.1 });
 
-    cards.forEach(card => {
-        revealOnScroll.observe(card);
-    });
+    document.querySelectorAll('.content-card').forEach(card => observer.observe(card));
 });
