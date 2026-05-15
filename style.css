@@ -1,9 +1,9 @@
 /* --- TEMA SEDA ACETINADA COM DOBRAS --- */
 :root {
-    --primary-bronze: #8c7365;   /* Tom da sua logo */
-    --accent-gold: #c5a059;     /* Detalhe dos ramos */
-    --text-dark: #4a4a4a;
-    --card-white: rgba(255, 255, 255, 0.4);
+    --primary-bronze: #8c7365;   
+    --accent-gold: #c5a059;     
+    --text-dark: #333333;
+    --silk-gray: #e8e8e8;
 }
 
 * {
@@ -13,83 +13,81 @@
 }
 
 body {
-    /* EFEITO DE DOBRAS NO TECIDO (Seda Acetinada) */
-    background: 
-        linear-gradient(135deg, #e0e0e0 25%, transparent 25%) -50px 0,
-        linear-gradient(225deg, #e0e0e0 25%, transparent 25%) -50px 0,
-        linear-gradient(315deg, #e0e0e0 25%, transparent 25%),
-        linear-gradient(45deg, #e0e0e0 25%, transparent 25%);
-    background-size: 100px 100px;
-    background-color: #f5f5f5; /* Cinza clarinho base */
-    
-    /* Sobreposição de brilho para parecer cetim */
+    /* Efeito visual de dobras e profundidade (Seda) */
+    background-color: var(--silk-gray);
     background-image: 
-        linear-gradient(110deg, #f0f0f0 0%, #d6d6d6 45%, #ffffff 50%, #d6d6d6 55%, #f0f0f0 100%);
+        linear-gradient(110deg, #f2f2f2 0%, #dcdcdc 45%, #ffffff 50%, #dcdcdc 55%, #f2f2f2 100%),
+        linear-gradient(135deg, rgba(0,0,0,0.02) 25%, transparent 25%),
+        linear-gradient(225deg, rgba(0,0,0,0.02) 25%, transparent 25%);
+    background-size: 100% 100%, 80px 80px, 80px 80px;
     background-attachment: fixed;
     
     color: var(--primary-bronze);
     font-family: 'Playfair Display', serif;
+    line-height: 1.6;
     overflow-x: hidden;
     min-height: 100vh;
 }
 
-/* RAMOS DOURADOS NOS CANTOS */
+/* RAMOS DOURADOS DECORATIVOS */
 body::before, body::after {
     content: "";
     position: fixed;
-    width: clamp(250px, 35vw, 400px);
-    height: clamp(250px, 35vw, 400px);
+    width: clamp(250px, 35vw, 450px);
+    height: clamp(250px, 35vw, 450px);
     background-image: url('https://www.transparentpng.com/download/leaves/gold-leaves-transparent-background-9.png');
     background-size: contain;
     background-repeat: no-repeat;
     opacity: 0.28;
     z-index: -1;
+    pointer-events: none;
 }
 
-body::before { top: -40px; left: -40px; transform: rotate(165deg); }
-body::after { bottom: -40px; right: -40px; transform: rotate(-15deg); }
+body::before { top: -60px; left: -60px; transform: rotate(165deg); }
+body::after { bottom: -60px; right: -60px; transform: rotate(-15deg); }
 
 .container {
     width: 90%;
     max-width: 800px;
     margin: 0 auto;
-    padding: 80px 20px;
+    padding: clamp(50px, 10vh, 100px) 20px;
     text-align: center;
 }
 
-/* LOGO ESTILO ASSINATURA */
+/* LOGO ASSINATURA */
 .logo-signature {
     font-family: 'Great Vibes', cursive;
-    font-size: clamp(70px, 15vw, 110px);
+    font-size: clamp(65px, 15vw, 105px);
     color: var(--primary-bronze);
     line-height: 1;
-    margin-bottom: 5px;
-    text-shadow: 2px 2px 5px rgba(0,0,0,0.05);
+    margin-bottom: 10px;
 }
 
 .tagline {
-    font-size: clamp(0.8rem, 3vw, 1.2rem);
+    font-size: clamp(0.9rem, 3vw, 1.3rem);
     letter-spacing: 5px;
     text-transform: uppercase;
     color: var(--accent-gold);
     margin-top: -10px;
-    margin-bottom: 50px;
+    margin-bottom: 60px;
 }
 
 /* CARDS TRANSLÚCIDOS (Efeito que flutua na seda) */
 .content-card {
-    background: var(--card-white);
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-    border: 1px solid rgba(255,255,255,0.5);
+    background: rgba(255, 255, 255, 0.45);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.6);
     border-left: 6px solid var(--accent-gold);
-    border-radius: 25px;
+    border-radius: 30px;
     margin: 40px 0;
     padding: clamp(35px, 6vw, 60px);
-    box-shadow: 10px 10px 30px rgba(0,0,0,0.03);
-    opacity: 0; /* Para o JS ativar */
+    box-shadow: 15px 15px 40px rgba(0,0,0,0.04);
+    
+    /* Início da animação (JavaScript ativará) */
+    opacity: 0;
     transform: translateY(30px);
-    transition: all 1.2s ease-out;
+    transition: all 1.2s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .content-card.active {
@@ -97,9 +95,15 @@ body::after { bottom: -40px; right: -40px; transform: rotate(-15deg); }
     transform: translateY(0);
 }
 
+.content-card h2 {
+    color: var(--primary-bronze);
+    margin-bottom: 15px;
+    font-weight: 400;
+}
+
 .content-card p {
-    font-size: clamp(1.1rem, 3vw, 1.4rem);
     color: var(--text-dark);
+    font-size: clamp(1.1rem, 3vw, 1.4rem);
 }
 
 /* BOTÃO WHATSAPP */
@@ -107,4 +111,16 @@ body::after { bottom: -40px; right: -40px; transform: rotate(-15deg); }
     display: inline-block;
     background: linear-gradient(135deg, #25d366 0%, #128c7e 100%);
     color: white;
-    padding: 20px 5
+    padding: 20px 50px;
+    border-radius: 60px;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1.1rem;
+    margin-top: 40px;
+    box-shadow: 0 10px 25px rgba(37, 211, 102, 0.2);
+}
+
+/* RODAPÉ */
+footer { margin-top: 100px; padding-bottom: 50px; }
+.location { font-weight: bold; color: var(--primary-bronze); margin-bottom: 10px; }
+.copyright { color: #888; font-size: 0.8rem; }
