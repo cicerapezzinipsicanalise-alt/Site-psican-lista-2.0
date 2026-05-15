@@ -1,102 +1,91 @@
 :root {
-    --primary-bronze: #d4a373; /* Bronze mais claro para destacar no escuro */
-    --accent-gold: #c5a059;     
-    --bg-dark: #121212;
+    --text-color: #3a322b; 
+    --silk-light: #f5f4f2; 
+    --silk-shadow: #dcdad7;
 }
 
 body {
-    background-color: var(--bg-dark);
     margin: 0;
     padding: 0;
     overflow-x: hidden;
     font-family: 'Playfair Display', serif;
+    color: var(--text-color);
     display: flex;
     justify-content: center;
-    color: #e0e0e0;
 }
 
-/* FUNDO ANIMADO */
-.background-motion {
+/* FUNDO DE SEDA COM MOVIMENTO SUAVE */
+.background-silk {
     position: fixed;
     top: 0;
     left: 0;
     width: 200%;
     height: 100%;
-    z-index: -2;
-    background: linear-gradient(125deg, #121212 0%, #2a2a2a 50%, #121212 100%);
+    z-index: -1;
+    background: radial-gradient(circle at 50% 50%, var(--silk-light) 0%, var(--silk-shadow) 100%);
     background-size: 50% 100%;
-    animation: waveMotion 15s ease-in-out infinite;
+    animation: silkWave 15s ease-in-out infinite;
 }
 
-@keyframes waveMotion {
-    0%, 100% { transform: translateX(0); }
-    50% { transform: translateX(-15%); }
+@keyframes silkWave {
+    0%, 100% { transform: translateX(0) scale(1); }
+    50% { transform: translateX(-10%) scale(1.05); }
 }
 
 .container {
     width: 100%;
-    max-width: 800px;
+    max-width: 700px;
     padding: 60px 20px;
-    text-align: center; /* Centraliza todo o texto */
     display: flex;
     flex-direction: column;
     align-items: center;
+    text-align: center;
 }
 
-/* RAMOS NO NOME */
+/* ALINHAMENTO DO NOME E RAMOS */
 .name-wrapper {
     position: relative;
-    display: inline-block;
-    margin-bottom: 10px;
-    padding: 0 60px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 5px;
 }
 
 .name-wrapper::before, .name-wrapper::after {
     content: "";
-    position: absolute;
-    top: 50%;
-    width: 50px;
-    height: 50px;
+    width: 45px;
+    height: 45px;
     background-image: url('https://www.transparentpng.com/download/leaves/gold-leaves-transparent-background-9.png');
     background-size: contain;
     background-repeat: no-repeat;
-    transform: translateY(-50%);
-    opacity: 0.8;
+    opacity: 0.5;
 }
 
-.name-wrapper::before { left: 0; transform: translateY(-50%) scaleX(-1); }
-.name-wrapper::after { right: 0; }
+.name-wrapper::before { margin-right: 15px; transform: scaleX(-1); }
+.name-wrapper::after { margin-left: 15px; }
 
 .logo-signature {
-    font-family: 'Great Vibes', cursive;
-    font-size: clamp(45px, 10vw, 80px);
-    color: var(--primary-bronze);
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(35px, 8vw, 55px);
+    font-weight: 400;
     margin: 0;
+    color: #1a1a1a;
 }
 
 .tagline {
-    letter-spacing: 4px;
-    text-transform: uppercase;
-    color: var(--accent-gold);
-    font-size: 0.85rem;
+    font-size: 0.9rem;
+    letter-spacing: 3px;
+    text-transform: lowercase;
     margin-bottom: 60px;
 }
 
-/* CARDS ALINHADOS */
+/* ESTILO DAS FRASES IGUAL À IMAGEM */
 .content-card {
-    background: rgba(40, 40, 40, 0.6);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    border-radius: 20px;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    padding: 40px;
-    margin-bottom: 30px;
     width: 100%;
-    box-sizing: border-box;
-    /* Efeito de entrada (JS) */
+    margin-bottom: 50px;
     opacity: 0;
     transform: translateY(20px);
-    transition: all 0.8s ease-out;
+    transition: all 1.2s ease-out;
 }
 
 .content-card.active {
@@ -104,19 +93,40 @@ body {
     transform: translateY(0);
 }
 
-.content-card h2 { color: var(--primary-bronze); font-size: 1.5rem; margin-top: 0; }
-.content-card p { font-size: 1.15rem; line-height: 1.6; margin-bottom: 0; }
-
-/* BOTÃO */
-.whatsapp-btn {
-    display: inline-block;
-    background: linear-gradient(135deg, #25d366 0%, #128c7e 100%);
-    color: white;
-    padding: 18px 40px;
-    border-radius: 50px;
-    text-decoration: none;
-    font-weight: bold;
-    margin-top: 20px;
+.content-card h2 {
+    font-size: clamp(24px, 6vw, 32px);
+    font-weight: 400;
+    margin-bottom: 10px;
 }
 
-footer { margin-top: 60px; color: var(--primary-bronze); }
+.content-card p {
+    font-size: 1.2rem;
+    line-height: 1.6;
+    font-style: italic;
+    padding-bottom: 15px;
+    border-bottom: 1px solid rgba(58, 50, 43, 0.2);
+    display: inline-block;
+    max-width: 90%;
+}
+
+/* BOTÃO WHATSAPP */
+.whatsapp-btn {
+    display: inline-block;
+    background: transparent;
+    color: var(--text-color);
+    padding: 15px 40px;
+    border: 1px solid var(--text-color);
+    border-radius: 4px;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    letter-spacing: 2px;
+    margin-top: 30px;
+    transition: all 0.3s;
+}
+
+.whatsapp-btn:hover {
+    background: rgba(58, 50, 43, 0.05);
+}
+
+footer { margin-top: 80px; font-size: 0.8rem; opacity: 0.6; }
