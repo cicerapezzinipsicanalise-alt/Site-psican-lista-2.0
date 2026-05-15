@@ -1,9 +1,10 @@
 :root {
-    --logo-bronze: #a68a64;    /* Bronze metálico */
-    --logo-gold: #d4af37;      /* Dourado assinatura */
-    --silk-dark: #1a1c1e;      /* Cinza escuro/grafite */
-    --silk-shadow: #2c2f33;    /* Sombra da seda */
-    --text-light: #e0e0e0;     /* Texto claro para fundo escuro */
+    --logo-bronze: #a68a64;    /* Bronze metálico da marca */
+    --logo-gold: #d4af37;      /* Dourado para assinatura */
+    --silk-dark: #1a1c1e;      /* Cinza escuro/grafite profundo */
+    --silk-shadow: #121315;    /* Sombra profunda para contraste */
+    --text-main: #e0e0e0;      /* Branco perolado para leitura */
+    --text-muted: #8e735b;     /* Bronze para legendas */
 }
 
 * {
@@ -14,7 +15,7 @@
 
 body {
     font-family: 'Playfair Display', serif;
-    color: var(--text-light);
+    color: var(--text-main);
     background-color: var(--silk-dark);
     min-height: 100vh;
     display: flex;
@@ -22,69 +23,46 @@ body {
     overflow-x: hidden;
 }
 
-/* FUNDO DE SEDA ESCURA ANIMADA */
+/* Efeito de Seda Escura no Fundo */
 .silk-background {
     position: fixed;
     top: 0; left: 0;
-    width: 200%; height: 100%;
+    width: 100%; height: 100%;
     z-index: -1;
-    background: linear-gradient(135deg, var(--silk-dark) 0%, var(--silk-shadow) 50%, var(--silk-dark) 100%);
-    background-size: 50% 100%;
-    animation: silkMove 20s ease-in-out infinite;
-}
-
-@keyframes silkMove {
-    0%, 100% { transform: translateX(0); }
-    50% { transform: translateX(-15%); }
+    background: radial-gradient(circle at 50% 50%, #2c2f33 0%, var(--silk-dark) 100%);
 }
 
 .container {
-    max-width: 650px;
+    max-width: 600px;
     width: 90%;
-    padding: 100px 20px;
+    padding: 80px 20px;
     text-align: center;
     display: flex;
     flex-direction: column;
     align-items: center;
-    position: relative;
 }
 
-/* RAMOS E FOLHAS EMOLDURANDO O SITE */
-.leaf-frame {
-    position: absolute;
-    width: 150px;
-    height: 150px;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='M10,90 Q30,40 80,10 M10,90 Q50,60 90,80 M30,70 Q40,40 60,30' fill='none' stroke='%23a68a64' stroke-width='1'/%3E%3Cellipse cx='80' cy='10' rx='5' ry='12' transform='rotate(45 80 10)' fill='%23a68a64'/%3E%3Cellipse cx='60' cy='30' rx='4' ry='10' transform='rotate(30 60 30)' fill='%23a68a64' opacity='0.7'/%3E%3Cellipse cx='90' cy='80' rx='4' ry='10' transform='rotate(-20 90 80)' fill='%23a68a64' opacity='0.5'/%3E%3C/svg%3E");
-    background-repeat: no-repeat;
-    background-size: contain;
-    opacity: 0.6;
-    pointer-events: none;
-}
-
-.leaf-frame.top { top: 20px; right: -20px; transform: rotate(0deg); }
-.leaf-frame.bottom { bottom: 80px; left: -20px; transform: rotate(180deg); }
-
-/* ASSINATURA DOURADA */
+/* Assinatura em Dourado */
 .name-signature {
     font-family: 'Great Vibes', cursive;
-    font-size: clamp(55px, 15vw, 90px);
+    font-size: clamp(50px, 15vw, 85px);
     color: var(--logo-gold);
     font-weight: 400;
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
     margin-bottom: 5px;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
 }
 
 .subtitle {
-    font-size: 0.8rem;
-    letter-spacing: 5px;
+    font-size: 0.9rem;
+    letter-spacing: 4px;
     text-transform: uppercase;
-    color: var(--logo-bronze);
-    margin-bottom: 80px;
+    color: var(--text-muted);
+    margin-bottom: 70px;
 }
 
-/* CARTÕES DE TEXTO */
+/* Blocos de Texto */
 .quote-card {
-    margin-bottom: 70px;
+    margin-bottom: 60px;
     width: 100%;
 }
 
@@ -96,47 +74,45 @@ body {
 }
 
 .quote-text {
-    font-size: 1.3rem;
+    font-size: 1.25rem;
     font-style: italic;
     line-height: 1.7;
-    padding-bottom: 20px;
+    padding-bottom: 15px;
     border-bottom: 1px solid rgba(166, 138, 100, 0.3);
     display: inline-block;
     max-width: 95%;
 }
 
 .highlight-card {
-    font-size: 1.6rem;
+    font-size: 1.5rem;
     font-style: italic;
-    margin: 50px 0;
-    color: var(--logo-bronze);
+    margin: 40px 0;
+    color: var(--text-main);
 }
 
-/* BOTÃO WHATSAPP PREMIUM */
+/* Botão WhatsApp em Bronze */
 .btn-whatsapp {
     display: inline-block;
     background: linear-gradient(135deg, var(--logo-bronze) 0%, #7a6548 100%);
-    color: #fff !important;
-    padding: 20px 50px;
-    border-radius: 2px;
+    color: #ffffff !important;
+    padding: 18px 45px;
+    border-radius: 4px;
     text-decoration: none;
     font-weight: 700;
     text-transform: uppercase;
     font-size: 0.9rem;
     letter-spacing: 2px;
-    transition: all 0.4s ease;
-    border: 1px solid rgba(255,255,255,0.1);
+    transition: 0.3s;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.3);
 }
 
 .btn-whatsapp:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 15px 30px rgba(0,0,0,0.4);
+    transform: translateY(-3px);
     filter: brightness(1.2);
 }
 
 footer {
-    margin-top: 120px;
-    font-size: 0.8rem;
-    opacity: 0.4;
-    color: var(--logo-bronze);
+    margin-top: 100px;
+    font-size: 0.85rem;
+    color: var(--text-muted);
 }
